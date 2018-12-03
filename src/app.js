@@ -14,15 +14,16 @@ app.use(cors())
 app.use(morgan('dev'))
 app.use(bodyParser.json())
 
-////////////////////////// ROUTES ////////////////////////// 
+////////////////////////// ROUTES //////////////////////////
 
 app.use('/auth', require('/routes/auth'))
 app.use('/users', require('/routes/users'))
-app.use('/post', require('/routes/post'))
-app.use('/comments', require('/routes/comments'))
+app.use('/posts', require('/routes/posts'))
+app.use('posts/comments', require('/routes/comments'))
+app.use('posts/ratings', require('/routes/ratings'))
 
 
-////////////////////////// DEFAULT ROUTES ////////////////////////// 
+////////////////////////// DEFAULT ROUTES //////////////////////////
 
 app.use(function(req, res, next) {
   next({status: 404, message: 'Route Not Found'})
@@ -35,7 +36,7 @@ app.use((err, _req, res, _next)=> {
   res.status(status).json({message, status})
 })
 
-////////////////////////// INTIALIZE SERVER ////////////////////////// 
+////////////////////////// INTIALIZE SERVER //////////////////////////
 
 const port = process.env.PORT || 3000;
 
