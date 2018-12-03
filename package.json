@@ -4,9 +4,15 @@
   "description": "A backend for a code judging, mircoblogging service",
   "main": "src/app.js",
   "scripts": {
+<<<<<<< HEAD
     "test": "echo \"Error: no test specified\" && exit 1",
     "knex": "knex",
     "latest": "knex migrate:latest"
+=======
+    "dev": "nodemon server.js",
+    "knex": "knex",
+    "start": "node server.js"
+>>>>>>> users
   },
   "repository": {
     "type": "git",
@@ -19,7 +25,19 @@
   },
   "homepage": "https://github.com/the-galloping-goats/f-my-code-backend#readme",
   "dependencies": {
+<<<<<<< HEAD
     "knex": "^0.15.2",
     "pg": "^7.7.1"
+=======
+    "bcrypt": "^3.0.2",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "knex": "^0.15.2",
+    "morgan": "^1.9.1",
+    "pg": "^7.7.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.7"
+>>>>>>> users
   }
 }
