@@ -1,6 +1,6 @@
 exports.seed = function(knex, Promise) {
-  return("knex").del()
-    .then(() => {
+  // return("knex").del()
+  //   .then(() => {
       return knex("comments")
         .insert([
           {
@@ -28,5 +28,5 @@ exports.seed = function(knex, Promise) {
             post_id: 1
           }
         ])
-    })
+    // })
 }

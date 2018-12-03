@@ -1,6 +1,6 @@
 exports.seed = function(knex, Promise) {
-  return("knex").del()
-    .then(() => {
+  // return("posts").del()
+  //   .then(() => {
       return knex("posts")
         .insert([
           {
@@ -17,8 +17,9 @@ exports.seed = function(knex, Promise) {
             id: 2,
             title: "Is this a good way to do this?",
             description: "It kind of works... am I close at least?",
-            code: `(pants, color) => "Your " + color " are " + pants "!";`
+            code: `(pants, color) => "Your " + color " are " + pants "!";`,
+            creator_id: 3
           }
         ])
-    })
+    // })
 }
