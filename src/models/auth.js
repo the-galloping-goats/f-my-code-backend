@@ -24,4 +24,4 @@ function login(username, password) {
     })
 }
 
-module.exports = { userModel };
+module.exports = { login };

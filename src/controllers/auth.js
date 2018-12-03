@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 
 function login(req, res, next) {
   const username = req.body.username;
-  const password = req.body.username;
+  const password = req.body.password;
 
   if (!username || !password) {
     next({ status: 400, message: "Bad Request" });
@@ -12,7 +12,7 @@ function login(req, res, next) {
     .then(user => {
       const token = jwt.sign({ sub: { id: user.id } }, process.env.SECRET);
 
-      res.status.send({ token });
+      res.status(200).send({ token });
     })
     .catch(next);
   }
