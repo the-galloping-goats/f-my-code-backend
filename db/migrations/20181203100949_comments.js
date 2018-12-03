@@ -1,13 +1,13 @@
 exports.up = function(knex, Promise) {
-  knex.schema.createTable("comments", table) {
+  return knex.schema.createTable("comments", table => {
     table.increments();
-    table.string("content");
+    table.string("content").notNullable().defaultsTo("");
     table.integer("post_id").references("id").inTable("posts");
-    table.integer("user_id");
+    table.integer("user_id").references("id").inTable("users");
     table.timestamps(true, true);
-  }
+  })
 };
 
 exports.down = function(knex, Promise) {
-  knex.schema.dropTableIfExists("comments");
+  return knex.schema.dropTableIfExists("comments");
 };
