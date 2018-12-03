@@ -1,4 +1,4 @@
-const express = reqiure('express')
+const express = require('express')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const cors = require('cors')
@@ -16,11 +16,11 @@ app.use(bodyParser.json())
 
 ////////////////////////// ROUTES //////////////////////////
 
-app.use('/auth', require('/routes/auth'))
-app.use('/users', require('/routes/users'))
-app.use('/posts', require('/routes/posts'))
-app.use('posts/comments', require('/routes/comments'))
-app.use('posts/ratings', require('/routes/ratings'))
+app.use('/auth', require('./routes/auth'))
+app.use('/users', require('./routes/users'))
+app.use('/posts', require('./routes/posts'))
+app.use('posts/comments', require('./routes/comments'))
+app.use('posts/ratings', require('./routes/ratings'))
 
 
 ////////////////////////// DEFAULT ROUTES //////////////////////////
@@ -44,4 +44,4 @@ app.listen(port, () => {
   console.log('Howdy from ', port)
 })
 
-module.exports = { sapp }
+module.exports = { app }
