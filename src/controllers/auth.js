@@ -18,4 +18,26 @@ function login(req, res, next) {
   }
 }
 
-module.exports = { login };
+/*
+ *  QUALITY OF LIFE FUNCTIONS
+ */
+
+ function authorize(req, res, next) {
+  if (!req.headers.authorization) {
+    next({ status: 401, message: "Unauthorized" });
+  } else {
+    const [ scheme, token ] = req.headers.authorization.split(" ");
+
+    jwt.verify(token, process.env.SECRET, (err, payload) => {
+      if (err) {
+        next({ status: 401, message: "Unauthorized" });
+      }
+
+      req.claim = payload;
+
+      next();
+    });
+  }
+}
+
+module.exports = { login, authorize };
