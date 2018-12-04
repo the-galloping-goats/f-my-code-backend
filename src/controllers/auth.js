@@ -2,11 +2,12 @@ const models = require("../models/auth");
 const jwt = require("jsonwebtoken");
 const db = require("../../db");
 
+//  Logs the user in, returns the jwt token.
 function login(req, res, next) {
   const username = req.body.username;
   const password = req.body.password;
 
-  if (!username || !password) {
+  if (!username || !password) { // Requires a username and password
     next({ status: 400, message: "Bad Request" });
   } else {
     models.login(username, password)
@@ -23,10 +24,12 @@ function login(req, res, next) {
  *  QUALITY OF LIFE FUNCTIONS
  */
 
+//  Checks the header for a valid jwt token.
 function authorize(req, res, next) {
-  if (!req.headers.authorization) {
+  if (!req.headers.authorization) { // look for the authorization header
     next({ status: 401, message: "Unauthorized" });
   } else {
+    // Pull the token of the authorization heading
     const [ scheme, token ] = req.headers.authorization.split(" ");
 
     jwt.verify(token, process.env.SECRET, (err, payload) => {
@@ -34,6 +37,8 @@ function authorize(req, res, next) {
         next({ status: 401, message: "Unauthorized" });
       }
 
+      // The payload has been re-encoded from base64 to unicode. Attach it to
+      // the req for later use.
       req.claim = payload;
 
       next();
@@ -41,19 +46,24 @@ function authorize(req, res, next) {
   }
 }
 
+/*
+ *  The middlewares below pass their respective tables along with the params id
+ *  and the stored token claim to a helper function, permit, below which checks
+ *  that the item at the given parameter id has a
+ */
 function editPost(req, res, next) {
   permit("posts", req.params.post_id, req.claim)
     .then(next)
     .catch(next);
 }
 
-function editComment() {
+function editComment(req, res, next) {
   permit("comments", req.params.post_id, req.claim)
     .then(next)
     .catch(next);
 }
 
-function editRating() {
+function editRating(req, res, next) {
   permit("ratings", req.params.post_id, req.claim)
     .then(next)
     .catch(next);
@@ -72,7 +82,7 @@ function permit(table, id, claim) {
       if (data.user_id !== claim.sub.id) {
         throw { status: 401, message: "Unauthorized" };
       }
-    });
+  });
 }
 
 function test(req, res, next) {
