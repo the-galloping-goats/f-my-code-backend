@@ -11,14 +11,14 @@ exports.seed = function(knex, Promise) {
               const answer = first + first;
               return answer;
             }`,
-            creator_id: 4
+            user_id: 4
           },
           {
             id: 2,
             title: "Is this a good way to do this?",
             description: "It kind of works... am I close at least?",
             code: `(pants, color) => "Your " + color " are " + pants "!";`,
-            creator_id: 3
+            user_id: 3
           }
         ])
     // })

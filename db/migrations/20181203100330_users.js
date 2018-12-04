@@ -3,14 +3,8 @@ exports.up = function(knex, Promise) {
   return knex.schema.createTable('users', table => {
     table.increments()
     table.string('username').notNullable().unique()
-<<<<<<< HEAD
     table.string('first_name').notNullable().defaultsTo('')
     table.string('last_name').notNullable().defaultsTo('')
-=======
-    table.string('password').notNullable()
-    table.string('firstName').notNullable().defaultsTo('')
-    table.string('lastName').notNullable().defaultsTo('')
->>>>>>> parine
     table.string('password').notNullable()
     table.timestamps(true, true)
   })

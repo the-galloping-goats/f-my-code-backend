@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
     table.string("title").notNullable().defaultsTo("");
     table.string("description").notNullable().defaultsTo("");
     table.string("code").notNullable().defaultsTo("");
-    table.integer("creator_id").references("id").inTable("users").onDelete('CASCADE');
+    table.integer("user_id").references("id").inTable("users").onDelete('CASCADE');
     table.timestamps(true, true);
   })
 };

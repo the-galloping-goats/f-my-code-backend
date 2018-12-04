@@ -8,7 +8,7 @@ const authController = require("../controllers/auth");
 // router.get("/:post_id", controllers.getOne);
 //
 router.post("/", authController.authorize, controllers.create);
-// router.put("/:post_id", authorize, permit, controllers.update);
+router.put("/:post_id", authController.authorize, authController.editPost, authController.test);
 // router.delete("/:post_id", authorize, permit, controllers.remove);
 
 module.exports = router;
