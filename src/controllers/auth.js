@@ -59,20 +59,20 @@ function editRating() {
     .catch(next);
 }
 
-function deleteComment() {
-  permit("posts", req.params.post_id, req.claim)
-    .then(next)
-    .catch(next);
-}
+// function deleteComment() {
+//   permit("posts", req.params.post_id, req.claim)
+//     .then(next)
+//     .catch(next);
+// }
 
 function permit(table, id, claim) {
   return db(table)
     .where({ id: id })
     .then(([ data ]) => {
       if (data.user_id !== claim.sub.id) {
-        throw({ status: 401, message: "Unauthorized" });
+        throw { status: 401, message: "Unauthorized" };
       }
-    })
+    });
 }
 
 function test(req, res, next) {
