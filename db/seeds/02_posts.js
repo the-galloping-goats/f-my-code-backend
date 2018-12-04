@@ -1,6 +1,5 @@
 exports.seed = function (knex, Promise) {
-  // return("posts").del()
-  //   .then(() => {
+
   return knex("posts")
     .insert([{
         id: 1,

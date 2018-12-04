@@ -2,7 +2,7 @@ exports.up = function(knex, Promise) {
   return knex.schema.createTable("comments", table => {
     table.increments();
     table.string("content").notNullable().defaultsTo("");
-    table.integer("post_id").references("id").inTable("posts");
+    table.integer("post_id").references("id").inTable("posts").onDelete("CASCADE");
     table.integer("user_id").references("id").inTable("users");
     table.timestamps(true, true);
   })

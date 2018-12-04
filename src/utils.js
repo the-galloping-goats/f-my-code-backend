@@ -6,7 +6,6 @@ const schemes = {
 function verifyEntry(entry, scheme) {
   const requirements = schemes[scheme];
 
-  // console.log(requirements)
 
   const errors = requirements.reduce((acc, property) => {
     if (!entry[property]) {
