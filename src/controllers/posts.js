@@ -3,7 +3,7 @@ const models = require("../models/posts");
 function create(req, res, next) {
   const entry = req.body;
 
-  entry.creator_id = req.claim.sub.id;
+  entry.user_id = req.claim.sub.id;
 
   models.create(entry)
   .then(response => {

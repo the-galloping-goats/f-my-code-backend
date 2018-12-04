@@ -28,5 +28,7 @@ exports.seed = function(knex, Promise) {
             post_id: 1
           }
         ])
-    // })
-}
+      .then(()=> {
+        return knex.raw(`SELECT setval('comments_id_seq', (SELECT MAX(id) FROM comments))`)
+      })
+    }

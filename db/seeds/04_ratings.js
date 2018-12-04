@@ -22,5 +22,7 @@ exports.seed = function(knex, Promise) {
             post_id: 2
           }
         ])
-    // })
-}
+        .then(()=> {
+          return knex.raw(`SELECT setval('ratings_id_seq', (SELECT MAX(id) FROM ratings))`)
+        })
+      }
