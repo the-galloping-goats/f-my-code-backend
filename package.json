@@ -2,7 +2,7 @@
   "name": "f-my-code-backend",
   "version": "1.0.0",
   "description": "A backend for a code judging, mircoblogging service",
-  "main": "src/app.js",
+  "main": "src/",
   "scripts": {
     "dev": "nodemon app.js",
     "knex": "knex",
