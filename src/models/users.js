@@ -2,6 +2,12 @@ const bcrypt = require("bcrypt");
 const db = require("../../db");
 const utils = require("../utils");
 
+function getOne(user_id) {
+  return db("users")
+    .where({ id: user_id })
+    .first();
+}
+
 function getOneByUsername(username) {
   return db("users")
     .where({ username: username })
@@ -37,4 +43,4 @@ function createUser(entry) {
     })
 }
 
-module.exports = { getOneByUsername, createUser };
+module.exports = { getOneByUsername, createUser, getOne };
