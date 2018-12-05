@@ -30,10 +30,13 @@ function authorize(req, res, next) {
     next({ status: 401, message: "Unauthorized" });
   } else {
     // Pull the token of the authorization heading
+    
     const [ scheme, token ] = req.headers.authorization.split(" ");
 
     jwt.verify(token, process.env.SECRET, (err, payload) => {
       if (err) {
+        console.log(err);
+
         next({ status: 401, message: "Unauthorized" });
       }
 

@@ -1,6 +1,4 @@
 exports.seed = function(knex, Promise) {
-  // return("knex").del()
-  //   .then(() => {
       return knex("ratings")
         .insert([
           {

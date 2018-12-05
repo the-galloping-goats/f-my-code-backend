@@ -20,7 +20,7 @@ app.use('/auth', require('./routes/auth'))
 app.use('/users', require('./routes/users'))
 app.use('/posts', require('./routes/posts'))
 app.use('/posts/:post_id/comments', require('./routes/comments'))
-app.use('/posts/ratings', require('./routes/ratings'))
+app.use('/posts/:post_id/ratings', require('./routes/ratings'))
 
 
 ////////////////////////// DEFAULT ROUTES //////////////////////////
