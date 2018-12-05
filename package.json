@@ -4,9 +4,9 @@
   "description": "A backend for a code judging, mircoblogging service",
   "main": "src/app.js",
   "scripts": {
-    "dev": "nodemon server.js",
+    "dev": "nodemon app.js",
     "knex": "knex",
-    "start": "node server.js"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
