@@ -45,5 +45,4 @@ function remove(id) {
     .returning("*")
 }
 
-
 module.exports = { getAll, create, update, remove };

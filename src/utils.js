@@ -1,7 +1,8 @@
 const schemes = {
     users: [ "first_name", "last_name", "username", "password" ],
     posts: [ "title", "description", "code" ],
-    comments: [ "content" ]
+    comments: [ "content" ],
+    ratings: ["rating" ]
 }
 
 function verifyEntry(entry, scheme) {

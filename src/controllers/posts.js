@@ -45,5 +45,4 @@ function remove(req, res, next) {
     .catch(next)
 }
 
-
 module.exports = { getAll, create, update, remove }
