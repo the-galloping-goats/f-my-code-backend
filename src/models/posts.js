@@ -45,5 +45,20 @@ function remove(id) {
     .returning("*")
 }
 
+function getRating(postId) {
+  return db("posts")
+    .where({ id: postId })
+    .then(([ post ]) => {
+      if (!post) {
+        throw { status: 400, message: "The post does not exist" };
+      }
+    })
+    .then(() => {
+      return db("ratings")
+      .sum("rating AS rating")
+      .where({ post_id: postId });
+    })
+}
 
-module.exports = { getAll, create, update, remove };
+
+module.exports = { getAll, create, update, remove, getRating };

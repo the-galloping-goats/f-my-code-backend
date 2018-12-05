@@ -45,5 +45,15 @@ function remove(req, res, next) {
     .catch(next)
 }
 
+function getRating(req, res, next) {
+  models.getRating(req.params.post_id)
+    .then(([ data ]) => {
+      if (data.rating === null) {
+        data.rating = "0";
+      }
+      res.status(200).send(data);
+    })
+    .catch(next);
+}
 
-module.exports = { getAll, create, update, remove }
+module.exports = { getAll, create, update, remove, getRating }
