@@ -13,4 +13,11 @@ const errors = utils.verifyEntry(entry, "ratings")
   .returning("*")
 }
 
-module.exports = { create }
+function remove(id) {
+return db("ratings")
+  .del()
+  .where({id})
+  .returning("*")
+}
+
+module.exports = { create, remove }

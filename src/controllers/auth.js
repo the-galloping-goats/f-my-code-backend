@@ -73,7 +73,7 @@ function editComment(req, res, next) {
 // }
 
 function editRating(req, res, next) {
-  permit("ratings", req.params.post_id, req.claim)
+  permit("ratings", req.params.rating_id, req.claim)
     .then(next)
     .catch(next);
 }
@@ -120,6 +120,7 @@ module.exports = {
   authorize,
   test,
   editPost,
+  editRating,
   editComment,
   deleteComment
 };
