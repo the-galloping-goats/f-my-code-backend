@@ -1,13 +1,12 @@
 const express = require("express");
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
 const controllers = require("../controllers/comments");
+const authController = require("../controllers/auth");
 
-// app.use(authorize);
-
-// router.get("/", authorize, controllers.getAll);
-// router.post("/", authorize, controllers.create);
-// router.put("/:comment_id", authorize, permit, controllers.update);
-// router.delete("/:comment_id", authorize, permit, controllers.remove);
+router.get("/", authController.authorize, controllers.getAll);
+router.post("/", authController.authorize, controllers.create);
+router.put("/:comment_id", authController.authorize, authController.editComment, controllers.update);
+router.delete("/:comment_id", authController.authorize, authController.deleteComment, controllers.remove);
 
 module.exports = router;
