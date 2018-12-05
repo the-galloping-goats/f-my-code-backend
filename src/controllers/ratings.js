@@ -12,6 +12,16 @@ function create(req, res, next) {
 .catch(next)
 }
 
+function update(req, res, next) {
+const id =  req.params.rating_id
+const entry = req.body
+
+  models.update(entry, id)
+  .then(response => {
+    res.status(201).send(response)
+  })
+  .catch(next)
+}
 
 
 function remove(req, res, next) {
@@ -23,4 +33,4 @@ models.remove(id)
 .catch(next)
 }
 
-module.exports = { create, remove }
+module.exports = { create, update,remove }

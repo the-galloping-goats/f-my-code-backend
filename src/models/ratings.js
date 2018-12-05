@@ -5,13 +5,26 @@ function create(entry) {
 const errors = utils.verifyEntry(entry, "ratings")
 
   if (errors.length > 0 ) {
-    throw { status: 400, message: "Missing " + errors.join(", ")
-    };
+    throw { status: 400, message: "Missing " + errors.join(", ") };
   }
   return db("ratings")
   .insert(entry)
   .returning("*")
 }
+
+
+function update(entry, id) {
+  const errors = utils.verifyEntry(entry, "ratings")
+
+  if(errors.length >0) {
+    throw { status: 400, message: "Missing " + errors.join(", ") }
+  }
+  return db("ratings")
+    .update(entry)
+    .where({id})
+    .returning("*")
+}
+
 
 function remove(id) {
 return db("ratings")
@@ -20,4 +33,4 @@ return db("ratings")
   .returning("*")
 }
 
-module.exports = { create, remove }
+module.exports = { create, update, remove }

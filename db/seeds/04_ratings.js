@@ -12,6 +12,13 @@ exports.seed = function(knex, Promise) {
             rating: 1,
             user_id: 2,
             post_id: 1
+          },
+          {
+            id: 3,
+            rating: 4,
+            user_id: 3,
+            post_id: 2
+
           }
         ])
         .then(()=> {
