@@ -23,11 +23,13 @@ function create(postId, userId, entry) {
       if (post.length < 1) {
         throw { status: 400, message: "A post with that id does not exist" };
       }
-
+    })
+    .then(() => {
       return db("comments")
       .where({ post_id: postId })
       .insert(entry)
       .returning("*");
+
     })
 }
 
@@ -38,7 +40,14 @@ function update(commentId, postId, revision) {
     .returning("*");
 }
 
-function remove(commentId, byType, byId, revision) {
+function remove(commentId) {
+  return db("comments")
+    .del()
+    .where({ id: commentId })
+    .returning("*");
+}
+
+// function remove(commentId, byType, byId, revision) {
   // const error = utils.verifyEntry(revision, table);
   //
   // if (errors.length > 0) {
@@ -57,6 +66,6 @@ function remove(commentId, byType, byId, revision) {
   //       .update(revision)
   //       .returning("*");
   //   })
-}
+// }
 
-module.exports = { getAll, create, update };
+module.exports = { getAll, create, update, remove };

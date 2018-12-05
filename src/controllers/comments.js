@@ -45,4 +45,12 @@ function update(req, res, next) {
     .catch(next);
 }
 
-module.exports = { getAll, create, update };
+function remove(req, res, next) {
+  models.remove(req.params.comment_id)
+    .then(([ data ]) => {
+      res.status(200).send(data);
+    })
+    .catch(next);
+}
+
+module.exports = { getAll, create, update, remove };

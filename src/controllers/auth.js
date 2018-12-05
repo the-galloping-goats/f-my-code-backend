@@ -75,11 +75,19 @@ function editRating(req, res, next) {
     .catch(next);
 }
 
-// function deleteComment() {
-//   permit("posts", req.params.post_id, req.claim)
-//     .then(next)
-//     .catch(next);
-// }
+function deleteComment(req, res, next) {
+  postDeletePermit(req.params.post_id, req.claim)
+    .then(([ data ]) => {
+      console.log(data);
+      if (!data) {
+        permit("comments", req.params.comment_id, req.claim)
+          .then(next)
+          .catch(next);
+      } else {
+        next();
+      }
+    });
+}
 
 function permit(table, id, claim) {
   return db(table)
@@ -95,6 +103,11 @@ function permit(table, id, claim) {
   });
 }
 
+function postDeletePermit(postId, claim) {
+  return db("posts")
+    .where({ id: postId, user_id: claim.sub.id });
+}
+
 function test(req, res, next) {
   res.status(200).send("Yay!");
 }
@@ -104,5 +117,6 @@ module.exports = {
   authorize,
   test,
   editPost,
-  editComment
+  editComment,
+  deleteComment
 };
