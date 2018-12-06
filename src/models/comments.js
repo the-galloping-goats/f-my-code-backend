@@ -4,7 +4,19 @@ const utils = require("../utils");
 
 function getAll(postId) {
   return db("comments")
-    .where({ post_id: postId });
+    .where({ post_id: postId })
+    .select(
+      "comments.content",
+      "comments.created_at",
+      "comments.updated_at",
+      "comments.id AS comments_id",
+      "comments.post_id",
+      "users.id AS user_id",
+      "users.username",
+      "users.first_name",
+      "users.last_name"
+    )
+    .join("users", "comments.user_id", "users.id");
 }
 
 function create(postId, userId, entry) {

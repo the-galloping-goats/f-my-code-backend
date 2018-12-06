@@ -4,21 +4,18 @@ const utils = require("../utils");
 
 function getAll(entry) {
   return db("posts")
-    .select("users.id AS user_id", "users.*", "posts.*")
+    .select("users.id AS user_id","posts.*", "users.username" )
     .join("users", "posts.user_id", "users.id")
     .then(data => {
       const promises = data.map( datum => {
-        // console.log(datum);
         return db("ratings")
         .sum("rating AS rating")
         .where({ post_id: datum.id })
         .then(([ ratingData ]) => {
-          console.log(ratingData)
           if (ratingData.rating === null) {
             ratingData.rating = "0";
           }
           datum.rating = ratingData.rating;
-          // console.log(datum.rating);
           return datum;
         });
       })
