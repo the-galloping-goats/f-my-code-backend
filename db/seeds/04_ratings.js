@@ -15,7 +15,7 @@ exports.seed = function(knex, Promise) {
           },
           {
             id: 3,
-            rating: 4,
+            rating: 8,
             user_id: 3,
             post_id: 2
 
