@@ -14,7 +14,7 @@ function login(req, res, next) {
     .then(user => {
       const token = jwt.sign({ sub: { id: user.id } }, process.env.SECRET);
 
-      res.status(200).send({ token });
+      res.status(200).send({ id: user.id, token });
     })
     .catch(next);
   }
@@ -30,7 +30,7 @@ function authorize(req, res, next) {
     next({ status: 401, message: "Unauthorized" });
   } else {
     // Pull the token of the authorization heading
-    
+
     const [ scheme, token ] = req.headers.authorization.split(" ");
 
     jwt.verify(token, process.env.SECRET, (err, payload) => {
