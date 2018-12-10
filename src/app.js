@@ -19,9 +19,6 @@ app.use(bodyParser.json())
 app.use('/auth', require('./routes/auth'))
 app.use('/users', require('./routes/users'))
 app.use('/posts', require('./routes/posts'))
-app.use('/posts/:post_id/comments', require('./routes/comments'))
-app.use('/posts/:post_id/ratings', require('./routes/ratings'))
-
 
 ////////////////////////// DEFAULT ROUTES //////////////////////////
 
@@ -36,7 +33,7 @@ app.use((err, _req, res, _next)=> {
   res.status(status).json({message, status})
 })
 
-////////////////////////// INTIALIZE SERVER //////////////////////////
+////////////////////////// INITIALIZE SERVER //////////////////////////
 
 const port = process.env.PORT || 3000;
 

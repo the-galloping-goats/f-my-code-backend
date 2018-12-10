@@ -17,6 +17,7 @@ function create(req, res, next) {
 
   models.create(entry)
   .then(response => {
+    // response is an array, it should be an object
     res.status(201).send(response)
   })
   .catch(next)
@@ -28,6 +29,7 @@ const entry = req.body
 
   models.update(entry, id)
   .then(response => {
+    // response is an array, it should be an object
     res.status(201).send(response)
   })
   .catch(next)
@@ -39,6 +41,7 @@ function remove(req, res, next) {
 
   models.remove(id)
   .then(response => {
+    // response is an array, it should be an object
     res.status(200).send(response)
   })
   .catch(next)

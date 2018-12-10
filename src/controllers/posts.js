@@ -15,6 +15,7 @@ function create(req, res, next) {
 
   models.create(entry)
     .then(response => {
+      // response is an array, it should be an object
       res.status(201).send(response);
     })
     .catch(next);
@@ -26,6 +27,7 @@ function update(req, res, next) {
 
   models.update(entry, id)
     .then(response => {
+      // response is an array, it should be an object
       res.status(201).send(response)
     })
     .catch(next)
@@ -41,6 +43,7 @@ function remove(req, res, next) {
           message: "No Post Associated With The Given ID"
         }
       }
+      // response is an array, it should be an object
       res.status(200).send(data)
     })
     .catch(next)
@@ -48,6 +51,7 @@ function remove(req, res, next) {
 
 function getRating(req, res, next) {
   models.getRating(req.params.post_id)
+    // unwrap data in model
     .then(([ data ]) => {
       if (data.rating === null) {
         data.rating = "0";

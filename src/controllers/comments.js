@@ -4,6 +4,8 @@ function getAll(req, res, next) {
   models.getAll(req.params.post_id)
     .then(data => {
       if (data.length < 1) {
+        // you should not return a 400 if there are no comments
+        // return an empty array.
         throw {
           status: 400,
           message: "There are no comments tied to that post"
@@ -21,6 +23,7 @@ function create(req, res, next) {
   const entry = req.body;
 
   models.create(postId, userId, entry )
+    // unwrap data in the model
     .then(([ data ]) => {
       res.status(201).send(data);
     })
@@ -33,6 +36,7 @@ function update(req, res, next) {
   const revision = req.body;
 
   models.update(commentId, postId, revision)
+    // unwrap data in the model
     .then(([ post ]) => {
       if (!post) {
         throw {
@@ -47,6 +51,7 @@ function update(req, res, next) {
 
 function remove(req, res, next) {
   models.remove(req.params.comment_id)
+    // unwrap data in the model
     .then(([ data ]) => {
       res.status(200).send(data);
     })
