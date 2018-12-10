@@ -8,6 +8,14 @@
 
 * Start in "Development Mode" ```npm run dev```
 
+## __Create Knex DataBase__
+
+* First, ```npm install knex```
+
+* Second, ```npm run knex migrate:latest```
+
+* Then, ```npm run knex seed:run```
+
 ### __Relationship Diagram__
 
 
