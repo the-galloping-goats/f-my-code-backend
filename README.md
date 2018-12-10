@@ -7,3 +7,8 @@
 * Run ```npm install```
 
 * Start in "Development Mode" ```npm run dev```
+
+### __Relationship Diagram__
+
+
+![Alt text](/ERD.png)
