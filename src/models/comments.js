@@ -41,7 +41,8 @@ function create(postId, userId, entry) {
       .where({ post_id: postId })
       .insert(entry)
       .returning("*");
-
+      // unwrap data here
+      // .then(([data]) => data)
     })
 }
 
@@ -50,14 +51,21 @@ function update(commentId, postId, revision) {
     .update(revision)
     .where({ post_id: postId, id: commentId })
     .returning("*");
+    // unwrap data here
+    // .then(([data]) => data)
 }
 
 function remove(commentId) {
   return db("comments")
     .del()
     .where({ id: commentId })
-    .returning("*");
+    .returning("*")
+    // unwrap data here
+    // .then(([data]) => data)
 }
+
+
+// remove commented out code
 
 // function remove(commentId, byType, byId, revision) {
   // const error = utils.verifyEntry(revision, table);

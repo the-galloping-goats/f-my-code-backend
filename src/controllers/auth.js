@@ -66,12 +66,19 @@ function editComment(req, res, next) {
     .catch(next);
 }
 
+// remove unused code
+
 // function editCommentByPost(req, res, next) {
 //   permit("posts", req.params.post_id, req.claim)
 //     .then(next)
 //     .catch(next);
 // }
 
+// this is a really good abstraction
+// It can be a bit dangerous because it depends on the
+// .then invoking next with no arguments.
+// a clearer alternative would be
+// .then(_ => next())
 function editRating(req, res, next) {
   permit("ratings", req.params.rating_id, req.claim)
     .then(next)
@@ -84,6 +91,7 @@ function deleteComment(req, res, next) {
       console.log(data);
       if (!data) {
         permit("comments", req.params.comment_id, req.claim)
+          // see above comment
           .then(next)
           .catch(next);
       } else {
@@ -111,6 +119,7 @@ function postDeletePermit(postId, claim) {
     .where({ id: postId, user_id: claim.sub.id });
 }
 
+// remove unused code
 function test(req, res, next) {
   res.status(200).send("Yay!");
 }

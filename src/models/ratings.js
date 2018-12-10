@@ -15,6 +15,7 @@ function create(entry) {
   return db("ratings")
     .insert(entry)
     .returning("*")
+    // unwrap data here
 }
 
 
@@ -28,6 +29,7 @@ function update(entry, id) {
     .update(entry)
     .where({id})
     .returning("*")
+    // unwrap data here
 }
 
 
@@ -36,6 +38,7 @@ return db("ratings")
   .del()
   .where({id})
   .returning("*")
+  // unwrap data here
 }
 
 module.exports = { getAll, create, update, remove }

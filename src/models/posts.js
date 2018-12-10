@@ -1,7 +1,7 @@
 const db = require("../../db");
 const utils = require("../utils");
 
-
+// paramter `entry` is not used, please remove
 function getAll(entry) {
   return db("posts")
     .select("users.id AS user_id","posts.*", "users.username" )
@@ -37,6 +37,7 @@ function create(entry) {
   return db("posts")
     .insert(entry)
     .returning("*");
+    // unwrap data here
 }
 
 function update(entry, id) {
@@ -55,6 +56,7 @@ function update(entry, id) {
       id: id
     })
     .returning("*")
+    // unwrap data here
 }
 
 function remove(id) {
@@ -62,6 +64,7 @@ function remove(id) {
     .del()
     .where("id", id)
     .returning("*")
+    // unwrap data here
 }
 
 function getRating(postId) {
@@ -76,6 +79,7 @@ function getRating(postId) {
       return db("ratings")
       .sum("rating AS rating")
       .where({ post_id: postId });
+      // add .first to get in db row
     })
 }
 
